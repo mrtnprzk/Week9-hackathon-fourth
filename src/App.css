@@ -1,10 +1,87 @@
 .App {
+  display: flex;
+  flex-direction: column;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+header {
+  background-color: #0e185f;
+  color: white;
+  padding: 30px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer {
+  background-color: #0e185f;
+  color: white;
+  padding: 30px;
+}
+tr {
+  background-color: #eeeeee;
+  margin: 5px;
+  border-radius: 5px;
+  display: flex;
+}
+
+th {
+  height: 40px;
+  width: 100px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+input {
+  height: 27px;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+select {
+  height: 30px;
+  margin-right: 3px;
+  border-radius: 6px;
+}
+
+label {
+  margin-left: 10px;
+}
+
+.bar {
+  background-color: #a5a5a5;
+}
+
+.btn {
+  -webkit-border-radius: 20;
+  -moz-border-radius: 20;
+  border-radius: 20px;
+  color: #ffffff;
+  background: #a5a5a5;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #444444;
+  text-decoration: none;
+}
+
+.checkbox {
+  /* width: 50px; */
+  height: 20px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
