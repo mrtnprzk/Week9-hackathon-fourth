@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 const SearchBar = ( {setSearchValue, fetchData, handleChange} ) => {
 
@@ -20,17 +20,6 @@ const SearchBar = ( {setSearchValue, fetchData, handleChange} ) => {
             <option value="BER">Berlin</option>
         </select>
 
-        <input 
-        type="date" 
-        id="dateFrom"  
-        name="dateFrom"
-        value={setSearchValue.dateFrom}
-        min="2022/01/01" max="2022/12/31"
-        onChange={(e) => {
-            // console.log(setSearchValue.dateFrom)
-            handleChange(e)}}>
-        </input>
-
         <select
         type="search" 
         id="to" 
@@ -48,6 +37,17 @@ const SearchBar = ( {setSearchValue, fetchData, handleChange} ) => {
             <option value="MXP">Milan</option>
         </select>
 
+        <input 
+        type="date" 
+        id="dateFrom"  
+        name="dateFrom"
+        value={setSearchValue.dateFrom}
+        min="2022/01/01" max="2022/12/31"
+        onChange={(e) => {
+            // console.log(setSearchValue.dateFrom)
+            handleChange(e)}}>
+        </input>
+        
         <input 
         type="date" 
         id="dateTo"  
@@ -73,7 +73,7 @@ const SearchBar = ( {setSearchValue, fetchData, handleChange} ) => {
             <option value="date">Date</option>
         </select>
 
-        <label htmlFor='checkbox'>Direct flight</label>
+        <label htmlFor='checkbox'>Direct flights</label>
         <input 
         className='checkbox'
         type="checkbox" 

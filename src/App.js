@@ -1,12 +1,12 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { DateTime } from 'luxon';
 import SearchBar from './Components/SearchBar';
+import Logo from './tenor.gif';
 
 function App() {
 
   const [searchResult, setSearchResults] = useState([]);
-  // const [searchValue, setSearchValue] = useState('');
   const [searchValue, setSearchValue] = useState({
     from:'',
     to:'',
@@ -15,6 +15,9 @@ function App() {
     filter:'',
     checked: ''
   });
+  
+  const [loading, setLoading] = useState(false);
+
   const urlSearch = `https://api.skypicker.com/flights?fly_from=${searchValue.from}&fly_to=${searchValue.to}&date_from=${searchValue.dateFrom}&date_to=${searchValue.dateTo}&partner=data4youcbp202106&offset=0&limit=20&sort=${searchValue.filter}&direct_flights=${searchValue.checked}`;
 
   const handleChange = (e) => {
@@ -26,25 +29,27 @@ function App() {
 
   //fetching data for search
   const fetchDataSearch = async () => {
-  const resp = await fetch(urlSearch);
-  const result = await resp.json();
-  console.log(result.data);
-  result.data && setSearchResults(result.data);
+    setLoading(true)
+    const resp = await fetch(urlSearch);
+    const result = await resp.json();
+    console.log(result.data);
+    
+    result.data && setSearchResults(result.data);
+    setLoading(false)
   }
 
   return (
     <div className="App">
       <header>
-      <h1>Traveling Search</h1>
-      
+      <h1>Flights Search</h1>
       <SearchBar 
         handleChange={handleChange} 
         setSearchValue={setSearchValue} 
         fetchData={fetchDataSearch} 
         />
-      </header>
-
-      <main>
+      </header> 
+        
+        <main>
         <tr className='bar'>
         <th>Day of Flight</th>
         <th>Departure</th>
@@ -56,7 +61,10 @@ function App() {
         <th></th>
         </tr>
 
+        { loading ? <img src={Logo}/> : <br/>}
+
         {searchResult.map((item, i) => (
+          
         <tr className='flight' key={i}>
 
           <th>{DateTime.fromMillis(item.dTimeUTC * 1000).toFormat('D')}</th>
@@ -71,7 +79,7 @@ function App() {
         </tr>
       ))}
       </main>
-
+        
       <footer>
         © 2022 K&M
       </footer>
